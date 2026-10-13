@@ -1,21 +1,26 @@
 # CS-July-Dec-2026-assignment-1-group-21
-# CS_Lab_1
 
-A simple class portal where students can log in, set a fun personal
-message on their page, and update their password.
+## Theme: AI & Cybersecurity
+
+This project delivers a full functional website for an AI-powered cybersecurity concept:
+**Context-Aware Phishing Defense (CAPD)**.
+
+CAPD helps organizations detect phishing attempts by combining message content signals,
+behavior/context indicators, and explainable risk scoring.
 
 ## Features
 
-- Log in with a username and password
-- View your own page with a welcome message
-- Set a short personal message that shows up on your page
-- Change your password any time
+- **Landing page** explaining the cybersecurity problem and solution
+- **Phishing Analyzer** where users submit suspicious messages
+- **AI-inspired risk scoring** with explainable detection factors
+- **SOC Dashboard** with saved analysis history and risk statistics
+- **SQLite persistence** for all analysis records
 
 ## Tech Stack
 
-- [Node.js](https://nodejs.org/) with [Express](https://expressjs.com/)
-- [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) for storage
-- Plain HTML/CSS, no front-end framework
+- Node.js + Express
+- better-sqlite3 (SQLite database)
+- Plain HTML/CSS/JavaScript
 
 ## Getting Started
 
@@ -31,32 +36,27 @@ message on their page, and update their password.
    npm start
    ```
 
-3. Open your browser to [http://localhost:3000](http://localhost:3000)
+3. Open:
 
-The database (`classmates.db`) is created automatically the first time
-you run the app, with a few sample accounts to log in with.
+   - `http://localhost:3000` (default)
+   - You can override with `PORT=8080 npm start`
 
 ## Project Structure
 
-```
-classmate-hub/
-├── server.js              # app entry point
-├── db.js                  # database setup
-├── views.js                # shared page template
-├── routes/
-│   ├── login.js           # login page
-│   ├── account.js         # account page + logout
-│   ├── message.js         # set message page
-│   └── password.js        # change password page
-└── public/
-    └── style.css           # styling
+```text
+CS-July-Dec-2026-assignment-1-group-21/
+├── server.js          # Express routes and phishing scoring logic
+├── db.js              # SQLite schema and prepared statements
+├── views.js           # Shared HTML layout/render helpers
+├── public/
+│   ├── style.css      # UI styling
+│   └── app.js         # Analyzer form and API integration
+└── capd.db            # Auto-created local database at runtime
 ```
 
-## Configuration
+## Main Endpoints
 
-By default the app runs on port `3000`. To use a different port, set
-the `PORT` environment variable before starting:
-
-```bash
-PORT=8080 npm start
-```
+- `GET /` - Home page
+- `GET /analyze` - Phishing analyzer UI
+- `POST /api/analyze` - Analyze message and save result
+- `GET /dashboard` - Security operations dashboard
